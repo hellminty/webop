@@ -1,0 +1,35 @@
+name: Build for macOS
+
+on: [push]  # Запускать сборку при каждом push в репозиторий
+
+jobs:
+  build:
+    runs-on: macos-latest  # Используем виртуальную машину с macOS
+    steps:
+      # Шаг 1: Получить код из репозитория
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Шаг 2: Установить Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # Укажите нужную версию Python
+
+      # Шаг 3: Установить зависимости
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Шаг 4: Собрать исполняемый файл с помощью PyInstaller
+      - name: Build executable
+        run: |
+          pyinstaller --onefile --windowed webop.py
+
+      # Шаг 5: Загрузить собранный файл как артефакт
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: web_open
+          path: dist/  # Папка, куда PyInstaller помещает собранный файл
