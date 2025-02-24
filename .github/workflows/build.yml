@@ -29,7 +29,7 @@ jobs:
 
       # Шаг 5: Загрузить собранный файл как артефакт
       - name: Upload artifact
-        uses: actions/upload-artifact@v3  # Используем актуальную версию upload-artifact
+        uses: actions/upload-artifact@v4  # Используем актуальную версию upload-artifact
         with:
           name: webop
           path: dist/  # Папка, куда PyInstaller помещает собранный файл
