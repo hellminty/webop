@@ -8,11 +8,11 @@ jobs:
     steps:
       # Шаг 1: Получить код из репозитория
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Используем актуальную версию checkout
 
       # Шаг 2: Установить Python
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4  # Используем актуальную версию setup-python
         with:
           python-version: '3.9'  # Укажите нужную версию Python
 
@@ -29,7 +29,7 @@ jobs:
 
       # Шаг 5: Загрузить собранный файл как артефакт
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3  # Используем актуальную версию upload-artifact
         with:
-          name: web_open
+          name: webop
           path: dist/  # Папка, куда PyInstaller помещает собранный файл
